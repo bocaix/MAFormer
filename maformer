@@ -652,15 +652,3 @@ def maformer(pretrained=False, num_classes=1000, **kwargs):
         num_heads=model_cfgs['num_heads'],
         drop_path_rate=model_cfgs['drop_path_rate'],
         num_classes=num_classes)
-
-
-if __name__ == '__main__':
-    model = maformer(num_classes = 6)
-#    ck = torch.load('model.pth.tar', map_location='cpu')
-#    model.load_state_dict(ck['state_dict_ema']) 
-    input = torch.rand((1, 3, 224, 224))
-    # print(model)
-    from fvcore.nn import FlopCountAnalysis, flop_count_table
-    model.eval()
-    flops = FlopCountAnalysis(model, input)
-    print(flop_count_table(flops))
